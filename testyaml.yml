@@ -1,0 +1,13 @@
+---
+
+- string1
+- string2
+- key1: val1
+  key2: val2
+  key3: &id001
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+- *id001
