@@ -1,0 +1,48 @@
+coconfparse  Valid methods and their arguments:
+class ciscoconfparse.CiscoConfParse(config='', comment='!', debug=False, factory=False, linesplit_rgx='\r*\n+', ignore_blank_lines=True, syntax='ios')
+
+LIST RETURNING COMMANDS 
+
+    find_lines:             arg1=linespec 
+    find_children:          arg1=linespec 
+    find_all_children:      arg1=linespec 
+    find_blocks:            arg1=linespec 
+    find_parents_w_child:   arg1=parentspec  arg2=childspec 
+    find_parents_wo_child:  arg1=parentspec  arg2=childspec 
+    req_cfgspec_excl_diff:  arg1=linespec    arg2=uncfgspec  arg3=cfgspec 
+    req_cfgspec_all_diff:   arg1=cfgspec 
+    decrypt:                arg1=encrypted_passwd 
+    delete_lines(linespec, exactmatch=False, ignore_ws=False)
+    find_blocks(linespec, exactmatch=False, ignore_ws=False)
+    find_children_w_parents(parentspec, childspec, ignore_ws=False)
+    has_line_with(linespec)
+    replace_all_children(parentspec, childspec, replacestr, excludespec=None, exactmatch=False, atomic=False)
+    replace_children(parentspec, childspec, replacestr, excludespec=None, exactmatch=False, atomic=True)
+    replace_lines(linespec, replacestr, excludespec=None, exactmatch=False, atomic=True)
+    replace(linespec, replacestr, ignore_rgx=None)
+    re_sub(regex, replacergx, ignore_rgx=None)
+    req_cfgspec_all_diff(cfgspec, ignore_ws=False) # takes a list of required configuration lines, ensures that none of cfgspec’s lines are missing& returns a list of missing lines from the config
+    req_cfgspec_excl_diff(linespec, uncfgspec, cfgspec) # accepts a linespec, an unconfig spec, and a list of required configuration elements. Return a list of configuration diffs to make the configuration comply. All other config lines matching the linespec that are not listed in the cfgspec will be removed with the uncfgspec regex.
+    
+    save_as(filepath) #Save a text copy of the configuration at
+    
+    ioscfg # A list containing all text configuration statements
+
+Objects 
+    class models_cisco.IOSCfgLine(*args, **kwargs)
+     IOSCfgLine objects contain references to other parent and child IOSCfgLine objects.
+     Args: text (str) e.g interface comment_delimiter (str) e.g. !
+     Attributes: text (str), linenum (int),parent (IOSCfgLine()),indent (int),children (list),child_indent (int), is_comment (bool)
+
+OBJECT COMMANDS 
+ 
+    find_objects(linespec, exactmatch=False, ignore_ws=False) # find_objects() is similar to find_lines(); however, the objects returns a list of IOSCfgLine objects, while the lines returns a list of text configuration statements. 
+    find_objects_w_child(parentspec, childspec, ignore_ws=False)
+    find_objects_wo_child(parentspec, childspec, ignore_ws=False)
+    insert_after(linespec, insertstr='', exactmatch=False, ignore_ws=False, atomic=True)
+    insert_after_child(parentspec, childspec, insertstr='', exactmatch=False, excludespec=None, ignore_ws=False, atomic=True)
+    insert_before(linespec, insertstr='', exactmatch=False, ignore_ws=False, atomic=True)
+    prepend_line(linespec) #Unconditionally insert an IOSCfgLine object for linespec (a text line) at the top of the configuration
+    delete(recurse=True)
+    delete_children_matching(linespec)
+    lineage #Iterate through to the oldest ancestor of this object, and return a list of all ancestors / children in the direct line. 
