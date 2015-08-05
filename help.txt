@@ -1,13 +1,0 @@
-        print("Valid methods and their arguments:")
-        print("   find_lines:             arg1=linespec")
-        print("   find_children:          arg1=linespec")
-        print("   find_all_children:      arg1=linespec")
-        print("   find_blocks:            arg1=linespec")
-        print("   find_parents_w_child:   arg1=parentspec  arg2=childspec")
-        print("   find_parents_wo_child:  arg1=parentspec  arg2=childspec")
-        print("   req_cfgspec_excl_diff:  arg1=linespec    arg2=uncfgspec" + \
-            "   arg3=cfgspec")
-        print("   req_cfgspec_all_diff:   arg1=cfgspec")
-        print("   decrypt:                arg1=encrypted_passwd")
-
-
